@@ -1,0 +1,4 @@
+2025-11-05:
+  Goku:
+  - rscadd: Added walk mode for wheelchairs, going slow will prevent crashing into things.
+  - tweak: Changed Aurora Caelus event weight to 5, from 1.
