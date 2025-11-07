@@ -2,3 +2,6 @@
   Goku:
   - rscadd: Added walk mode for wheelchairs, going slow will prevent crashing into things.
   - tweak: Changed Aurora Caelus event weight to 5, from 1.
+2025-11-07:
+  Goku:
+  - bugfix: Synths can no longer get the Immunodeficiency quirk.
