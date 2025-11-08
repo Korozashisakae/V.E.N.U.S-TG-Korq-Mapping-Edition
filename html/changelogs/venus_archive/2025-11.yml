@@ -7,5 +7,5 @@
   - bugfix: Synths can no longer get the Immunodeficiency quirk.
 2025-11-08:
   Goku:
-  - rscadd: Added sounds for scrubbing/brushing.
+  - rscadd: Added 2 sounds for scrubbing.
   - rscadd: Xenoarch rocks now have sounds when they are picked/dropped, brushed, and hammered.
