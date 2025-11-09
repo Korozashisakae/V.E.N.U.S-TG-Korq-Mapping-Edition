@@ -11,3 +11,4 @@
   - rscadd: Xenoarch rocks now have sounds when they are picked/dropped, brushed, and hammered.
   - bugfix: Fixed hostile mobs not aggroing on the attacker when hit by explosions from the kinetic accelerator.
   - bugfix: Fixed strange rocks not having a scan icon in mineable turfs.
+  - tweak: Changed wheelchair movement delay multiplier to 5.7, from 6.7, to adjust for Venus' new movement delay.
