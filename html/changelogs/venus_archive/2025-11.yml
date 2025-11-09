@@ -12,3 +12,6 @@
   - bugfix: Fixed hostile mobs not aggroing on the attacker when hit by explosions from the kinetic accelerator.
   - bugfix: Fixed strange rocks not having a scan icon in mineable turfs.
   - tweak: Changed wheelchair movement delay multiplier to 5.7, from 6.7, to adjust for Venus' new movement delay.
+2025-11-09:
+  Goku:
+  - rscadd: Added drop-pod styles options for the Admin Spawn Panel.

@@ -51,10 +51,26 @@ GLOBAL_LIST_INIT(spawnpanels_by_ckey, list())
 	var/offset_type = OFFSET_RELATIVE
 	/// Precise mode toggle. Used for build-mode-like spawning experience and targeting datums.
 	var/precise_mode = PRECISE_MODE_OFF
+	//VENUS ADDITION START - Pod styles for spawning panel
+	/// Pod style for droppod spawns. Defaults to standard pod style.
+	var/datum/pod_style/pod_style = /datum/pod_style
+	/// Static list of pod style info for UI
+	var/static/list/pod_style_info
+	/// Static lookup table for pod styles by ID
+	var/static/list/pod_style_lookup
+	//VENUS ADDITION END
 
 /datum/spawnpanel/New()
 	. = ..()
 	offset = list("X" = 0, "Y" = 0, "Z" = 0)
+	//VENUS ADDITION START - Pod styles for spawning panel
+	if(isnull(pod_style_info))
+		pod_style_info = list()
+		pod_style_lookup = list()
+		for(var/datum/pod_style/style as anything in typesof(/datum/pod_style))
+			pod_style_info += list(list("id" = style::id, "title" = style::ui_name))
+			pod_style_lookup[style::id] = style
+	//VENUS ADDITION END
 
 /datum/spawnpanel/ui_interact(mob/user, datum/tgui/ui)
 	if(user.client.ckey != owner_ckey)
@@ -175,6 +191,7 @@ GLOBAL_LIST_INIT(spawnpanels_by_ckey, list())
 				"atom_icon_size" = params["atom_icon_size"],
 				"offset_type" = params["offset_type"] || OFFSET_RELATIVE,
 				"apply_icon_override" = apply_icon_override,
+				"pod_style" = pod_style, //VENUS ADDITION - Pod styles for spawning panel
 				)
 
 			if(apply_icon_override)
@@ -213,6 +230,12 @@ GLOBAL_LIST_INIT(spawnpanels_by_ckey, list())
 				selected_atom_icon = params["selected_atom_icon"]
 			if(params["selected_atom_icon_state"])
 				selected_atom_icon_state = params["selected_atom_icon_state"]
+			//VENUS ADDITION START - Pod styles for spawning panel
+			if(params["pod_style"])
+				var/style_id = params["pod_style"]
+				if(pod_style_lookup[style_id])
+					pod_style = pod_style_lookup[style_id]
+			//VENUS ADDITION END
 			return TRUE
 
 /datum/spawnpanel/proc/toggle_precise_mode(precise_type)
@@ -272,6 +295,7 @@ GLOBAL_LIST_INIT(spawnpanels_by_ckey, list())
 					"target" = target,
 					"atom_icon_size" = atom_icon_size,
 					"apply_icon_override" = apply_icon_override,
+					"pod_style" = pod_style, //VENUS ADDITION - Pod styles for spawning panel
 				)
 
 				if(apply_icon_override)
@@ -313,6 +337,10 @@ GLOBAL_LIST_INIT(spawnpanels_by_ckey, list())
 	data["iconStates"] = states
 	data["precise_mode"] = precise_mode
 	data["selected_object"] = selected_atom ? "[selected_atom.type]" : ""
+	//VENUS ADDITION START - Pod styles for spawning panel
+	data["podStyles"] = pod_style_info
+	data["podStyle"] = pod_style::id
+	//VENUS ADDITION END
 	return data
 
 /datum/spawnpanel/ui_assets(mob/user)
