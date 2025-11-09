@@ -43,4 +43,5 @@
 	if(istype(current_area, /area/misc/hilbertshotel))
 		var/area/misc/hilbertshotel/hotel_area = current_area
 		if(hotel_area.room_number && !GetComponent(/datum/component/hotel_item))
-			AddComponent(/datum/component/hotel_item, hotel_area.room_number)
+			if(!(SShilbertshotel.lore_room_spawned && hotel_area.room_number == SShilbertshotel.hhMysteryroom_number))
+				AddComponent(/datum/component/hotel_item, hotel_area.room_number)
