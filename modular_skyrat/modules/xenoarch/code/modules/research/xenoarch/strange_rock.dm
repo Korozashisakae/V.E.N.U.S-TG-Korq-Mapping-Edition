@@ -206,6 +206,7 @@
 	mineralAmt = 1
 	icon = MAP_SWITCH('modular_skyrat/modules/liquids/icons/turf/smoothrocks.dmi', 'modular_skyrat/modules/xenoarch/icons/mining.dmi')
 	scan_state = "rock_Strange"
+	scan_icon = 'modular_skyrat/modules/xenoarch/icons/ore_visuals.dmi' //VENUS ADDITION - Make sure strange rocks have a scan icon
 	mineralType = /obj/item/xenoarch/strange_rock
 
 /turf/closed/mineral/strange_rock/volcanic
